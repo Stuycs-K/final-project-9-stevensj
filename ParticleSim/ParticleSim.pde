@@ -1,8 +1,8 @@
 ElementMatrix env ;
 
 void setup(){
-  size(1200,800) ;
-  env = new ElementMatrix(20) ;
+  size(500,300) ;
+  env = new ElementMatrix(5) ;
 }
 
 void draw(){
