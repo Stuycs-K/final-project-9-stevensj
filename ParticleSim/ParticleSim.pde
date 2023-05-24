@@ -22,3 +22,10 @@ void drawPixels(){
     }
   }
 }
+
+void setParticle(int x, int y, int type){
+  if(type == -1){
+    Element e = new MovableSolid() ;
+    env.set(x,y, e) ;
+  }
+}
