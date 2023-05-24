@@ -18,6 +18,10 @@ public class Element{
     elementColor = eColor ;
   }
   
+  public void setEName(String newName){
+    name = newName ;
+  }
+  
   public int getTemp(){
     return temp ;
   }
