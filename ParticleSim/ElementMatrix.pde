@@ -31,7 +31,9 @@ public class ElementMatrix{
   }
   
   public void set(int x, int y, Element E){
-    eMatrix[x][y] = E ;
+    if(eMatrix[x][y] != null){
+      eMatrix[x][y] = E ;
+    }
   }
   //public ElementMatrix(int thickness){
   }
