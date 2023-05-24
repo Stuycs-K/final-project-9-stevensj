@@ -29,5 +29,9 @@ public class ElementMatrix{
   public Element get(int x, int y){
     return eMatrix[x][y] ;
   }
+  
+  public void set(int x, int y, Element E){
+    eMatrix[x][y] = E ;
+  }
   //public ElementMatrix(int thickness){
   }
