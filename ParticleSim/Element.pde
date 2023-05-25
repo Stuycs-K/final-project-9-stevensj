@@ -11,13 +11,16 @@ public class Element{
   }
   
   public void pixelDraw(int x, int y){
-    set(x,y,elementColor) ;
+    for(int i = x ; i < 10 ; i++){
+      for(int k = y ; k < 10 ; k++){
+        set(i,k,elementColor) ;
+      }
+    }
   }
   
   public void setEColor(color eColor){
     elementColor = eColor ;
   }
-  
   public void setEName(String newName){
     name = newName ;
   }
