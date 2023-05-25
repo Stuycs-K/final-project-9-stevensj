@@ -3,6 +3,8 @@ public class Element{
   private int temp ;
   private color elementColor;
   private String name ;
+  private int EX ;
+  private int EY ;
   
   public Element(){
     temp = 20 ;
@@ -11,8 +13,8 @@ public class Element{
   }
   
   public void pixelDraw(int x, int y){
-    for(int i = x ; i < 10 ; i++){
-      for(int k = y ; k < 10 ; k++){
+    for(int i = x ; i < x+10 ; i++){
+      for(int k = y ; k < y+10 ; k++){
         set(i,k,elementColor) ;
       }
     }
@@ -27,6 +29,17 @@ public class Element{
   
   public int getTemp(){
     return temp ;
+  }
+  
+  public void setPosition(int x, int y){
+    EX = x ;
+    EY = y ;
+  }
+  public int eX(){
+    return EX ;
+  }
+  public int eY(){
+    return EY ;
   }
   
   public String toString(){
