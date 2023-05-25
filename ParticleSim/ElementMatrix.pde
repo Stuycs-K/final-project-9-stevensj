@@ -36,7 +36,13 @@ public class ElementMatrix{
     Border ref = new Border() ;
     if(!(eMatrix[x][y] instanceof Border)){
       eMatrix[x][y] = E ;
+      eMatrix[x][y].setPosition(y,x) ;
     }
   }
+  public boolean isEmpty(int x, int y){
+    return eMatrix[x][y] == null ;
+  }
+  
+  public void swap()
   //public ElementMatrix(int thickness){
   }
