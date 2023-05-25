@@ -33,7 +33,8 @@ public class ElementMatrix{
   }
   
   public void set(int x, int y, Element E){
-    if(eMatrix[x][y] != null){
+    Border ref = new Border() ;
+    if(!(eMatrix[x][y] instanceof Border)){
       eMatrix[x][y] = E ;
     }
   }
