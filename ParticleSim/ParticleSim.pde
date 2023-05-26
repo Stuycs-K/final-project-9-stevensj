@@ -7,6 +7,8 @@ void setup(){
 
 void draw(){
   drawPixels() ;
+  movement() ;
+  
 }
 
 void drawPixels(){
@@ -27,12 +29,34 @@ void drawPixels(){
   }
 }
 
+void movement(){
+  for(int y = 0 ; y < height-9 ; y+=10){
+    for(int x = 0 ; x < width-9 ; x+=10){
+      try{
+        //System.out.println(env.get(y,x)) ;
+        env.get(y/10,x/10).move(env,x/10,y/10) ;
+        //set(x,y,color(124,35,100)) ;
+      }catch(NullPointerException e){
+        
+      }
+    }
+      }
+      env.movementReset() ;
+    }
+  
+
+  
+
 void setParticle(int x, int y, int type){
   if(type == -1){
     Element e = new MovableSolid() ;
     env.set(y,x, e) ;
   }
 }
+
+public static int rng(int possibilities){
+    return (int)Math.random() % possibilities ;
+  }
 
 void mouseClicked(){
   int mousex = mouseX/10 ;
