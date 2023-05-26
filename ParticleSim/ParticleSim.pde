@@ -1,4 +1,6 @@
 ElementMatrix env ;
+boolean mouseInterval ;
+int mouseCountdown ;
 
 void setup(){
   size(500,500) ;
@@ -8,6 +10,9 @@ void setup(){
 void draw(){
   drawPixels() ;
   movement() ;
+  if(mouseCountdown > 0){
+    mouseCountdown-- ;
+  }
   
 }
 
@@ -58,9 +63,18 @@ public static int rng(int possibilities){
     return (int)Math.random() % possibilities ;
   }
 
-void mouseClicked(){
+void mouseDragged(){
+  //while(mouseInterval && (mouseCountdown==0)){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
   setParticle(mousex, mousey,-1) ;
   System.out.println(env.get(mousey,mousex)) ;
+ // mouseCountdown += 1 ;
+//  }
+}
+void mouseClicked(){
+  mouseInterval = true ;
+}
+void mouseReleased(){
+  mouseInterval = false ;
 }
