@@ -1,6 +1,7 @@
 ElementMatrix env ;
 boolean mouseInterval ;
 int mouseCountdown ;
+String ElementChosen = "NONE";
 
 void setup(){
   size(500,500) ;
@@ -10,6 +11,7 @@ void setup(){
 void draw(){
   drawPixels() ;
   movement() ;
+  text(ElementChosen,35,40) ;
   if(mouseCountdown > 0){
     mouseCountdown-- ;
   }else{
@@ -62,10 +64,12 @@ void movement(){
   
 
 void setParticle(int x, int y, int type){
+  Element e = new Element();
   if(type == -1){
-    Element e = new MovableSolid() ;
+    e = new MovableSolid() ;
     env.set(y,x, e) ;
   }
+    ElementChosen = e.toString() ;
 }
 
 /*public static int rng(int possibilities){
