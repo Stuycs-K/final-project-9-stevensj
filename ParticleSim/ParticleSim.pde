@@ -107,3 +107,9 @@ void mousePressed(){
 void mouseReleased(){
   mouseInterval = false ;
 }
+
+void keyPressed(){
+  if(key == 44){
+    env.clear() ;
+  }
+}
