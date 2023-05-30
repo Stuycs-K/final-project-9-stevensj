@@ -94,6 +94,75 @@ public class ElementMatrix{
     }
   }
   
+  public boolean moveExtended(int xi, int yi,int xf,int yf){
+    float slope = 0 ;
+    try{
+      slope = (xf-xi)/(yf-yi) ;
+    }catch(ArithmeticException e){
+    }
+    if(slope > 0){
+    float x = xi ;
+    float y = yi ;
+    while((x != xf)&&(y != yf)&&(this.isEmpty((int)x+1,round(y+slope)))){
+      y+=slope ;
+      x++ ;
+    }
+    int xff = round(x) ;
+    int yff = round(y) ;
+    this.swap(xi,yi,xff,yff) ;
+    return true ;
+    }else{
+    float x = xi ;
+    float y = yi ;
+    while((x != xf)&&(this.isEmpty((int)x+1,round(y+slope)))){
+      y+=slope ;
+      x++ ;
+    }
+    int xff = round(x) ;
+    int yff = round(y) ;
+    this.swap(xi,yi,xff,yff) ;
+    return true ;
+  }
+  }
+  public boolean moveExtended(int xi, int yi,int xf,int yf,int movsoltoggle){
+    float slope = 0 ;
+    try{
+      slope = (xf-xi)/(yf-yi) ;
+    }catch(ArithmeticException e){
+    }
+    if(slope > 0){
+    float x = xi ;
+    float y = yi ;
+    while((x != xf)&&(y != yf)&&(this.MovSolMoveCheck((int)x+1,round(y+slope)))){
+      int ixi = round(x) ;
+      int iyi = round(y) ;
+      x++ ;
+      y += (slope);
+      int fxf = round(x) ;
+      int fyf = round(y) ;
+      this.swap(ixi,iyi,fxf,fyf) ;
+    }
+    
+    return true ;
+    }else{
+    float x = xi ;
+    float y = yi ;
+    while((x != xf)&&(this.MovSolMoveCheck(round(x+1),round(y+slope)))){
+      int xii = round(x) ;
+      int yii = round(y) ;
+      x++ ;
+      y += (slope);
+      int xff = round(x) ;
+      int yff = round(y) ;
+      this.swap(xii,yii,xff,yff) ;
+    }
+    
+    return true ;
+  }
+  
+  
+  }
+  
   public void clear(){
     for(int i = 0 ; i < eMatrix.length ; i++){
       for(int k = 0 ; k < eMatrix[i].length ; k++){
