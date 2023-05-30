@@ -55,7 +55,7 @@ public class ElementMatrix{
   
   public void swap(int x1, int y1, int x2, int y2){
     Element temp = eMatrix[x1][y1] ;
-    if(eMatrix[x2][y2] instanceof Liquid){
+    /*if(eMatrix[x2][y2] instanceof Liquid){
       if(((int)random(2) == 0)&&this.isEmpty(x1,y1+1)){
         eMatrix[x1][y1+1] = eMatrix[x2][y2] ;
         eMatrix[x2][y2] = temp ;
@@ -64,20 +64,10 @@ public class ElementMatrix{
         eMatrix[x1][y1-1] = eMatrix[x2][y2] ;
         eMatrix[x2][y2] = temp ;
       }
-    }else{
+    }else{*/
     eMatrix[x1][y1] = eMatrix[x2][y2] ;
     eMatrix[x2][y2] = temp ;
-    }
-  }
-  public void movementReset(){
-    for(int i = 0 ; i < eMatrix.length ; i++){
-      for(int j = 0 ; j < eMatrix[i].length ; j++){
-        try{
-          eMatrix[i][j].moved = false ;
-        }catch(NullPointerException e){
-        }
-      }
-    }
+    //}
   }
   
   public void clear(){
