@@ -3,8 +3,8 @@ public class Element{
   private int temp ;
   private color elementColor;
   private String name ;
-  //private int EX ;
-  //private int EY ;
+  private int EX ;
+  private int EY ;
   
   public Element(){
     temp = 20 ;
@@ -23,6 +23,16 @@ public class Element{
         set(i,k,elementColor) ;
       }
     }
+        //println("drawn" + this.toString()) ;
+  }
+  
+  public void pixelDraw(){
+    for(int i = EX*10 ; i < i+10 ; i++){
+      for(int k = EX*10 ; k < k+10 ; k++){
+        set(i,k,elementColor) ;
+        println("drawn" + this.toString()) ;
+      }
+    }
   }
   
   public void setEColor(color eColor){
@@ -35,7 +45,10 @@ public class Element{
   public int getTemp(){
     return temp ;
   }
-   /* 
+  
+  
+    
+   
   public void setPosition(int x, int y){
     EX = x ;
     EY = y ;
@@ -47,9 +60,10 @@ public class Element{
   public int eY(){
     return EY ;
   }
-  */
   
-  public void move(ElementMatrix env, int x, int y){
+  
+  public boolean move(ElementMatrix env, int x, int y){
+    return true ;
   }
   
   
