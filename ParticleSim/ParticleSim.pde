@@ -10,7 +10,7 @@ static int ImmovSol = 87 ;
 static int Liq = 69 ;
 
 void setup(){
-  size(1000,1000) ;
+  size(500,500) ;
   background(0) ;
   env = new ElementMatrix() ;
 }
@@ -51,7 +51,7 @@ void drawPixels(){
   }
 }
 
-/*void movement(){
+void movement(){
   for(int y = height-9 ; y >= 0  ; y-=10){
     for(int x = 0 ; x < width-9 ; x+=10){
       try{
@@ -64,19 +64,19 @@ void drawPixels(){
     }
       }
       //env.movementReset() ;
-    }*/
+    }
     
-void movement(){
+/*void movement(){
   
   for(int i = 0 ; i < elementsPresent.size() ; i++){
     Element e = elementsPresent.get(i) ;
     if(e.move(env, e.eX(), e.eY()) ){
-      println("moved" + ticks + " " +e.eX() +" " + e.eY() + " " + env.get(e.eX(), e.eY())) ;
+      //println("moved" + ticks + " " +e.eX() +" " + e.eY() + " " + env.get(e.eX(), e.eY())) ;
     }
     
   }
   
-}
+}*/
   
 
   
