@@ -29,13 +29,20 @@ public class ElementMatrix{
   } 
   
   public Element get(int x, int y){
+    if((x < eMatrix.length && x >= 0) && (y < eMatrix[0].length && y >= 0)){
     return eMatrix[x][y] ;
+    }else{
+      Element e = new Element() ;
+      return e ;
+  }
   }
   
   public void set(int x, int y, Element E){
+    if((x < eMatrix.length && x >= 0) && (y < eMatrix[0].length && y >= 0)){
     if(!(eMatrix[x][y] instanceof Border)){
       eMatrix[x][y] = E ;
       //eMatrix[x][y].setPosition(y,x) ;
+    }
     }
   }
   public boolean isEmpty(int x, int y){
