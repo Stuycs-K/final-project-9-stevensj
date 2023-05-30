@@ -2,6 +2,12 @@ public class ElementMatrix{
   
   private Element[][] eMatrix ;
   
+  public ElementMatrix(){
+    int mheight = height/10 ;
+    int mwidth = width/10 ;
+    eMatrix = new Element[mheight][mwidth] ;
+  }
+  
   public ElementMatrix(int borderWidth){
     int mheight = height/10 ;
     int mwidth = width/10 ;
@@ -28,8 +34,12 @@ public class ElementMatrix{
     }
   } 
   
+  public boolean isValid(int x, int y){
+    return (x < eMatrix.length && x >= 0) && (y < eMatrix[0].length && y >= 0) ;
+  }
+  
   public Element get(int x, int y){
-    if((x < eMatrix.length && x >= 0) && (y < eMatrix[0].length && y >= 0)){
+    if(this.isValid(x,y)){
     return eMatrix[x][y] ;
     }else{
       Element e = new Element() ;
@@ -38,22 +48,27 @@ public class ElementMatrix{
   }
   
   public void set(int x, int y, Element E){
-    if((x < eMatrix.length && x >= 0) && (y < eMatrix[0].length && y >= 0)){
+    if(this.isValid(x,y)){
     if(!(eMatrix[x][y] instanceof Border)){
       eMatrix[x][y] = E ;
-      //eMatrix[x][y].setPosition(y,x) ;
+      eMatrix[x][y].setPosition(y,x) ;
     }
     }
   }
   public boolean isEmpty(int x, int y){
+    if(this.isValid(x,y)){
     return eMatrix[x][y] == null ;
+    }else{return false ;}
   }
   public boolean MovSolMoveCheck(int x, int y){
+    if(this.isValid(x,y)){
     return (eMatrix[x][y] == null) || (eMatrix[x][y] instanceof Liquid) ;
+    }else{return false ;}
   }
   
   
   public void swap(int x1, int y1, int x2, int y2){
+    if(this.isValid(x2,y2)){
     Element temp = eMatrix[x1][y1] ;
     /*if(eMatrix[x2][y2] instanceof Liquid){
       if(((int)random(2) == 0)&&this.isEmpty(x1,y1+1)){
@@ -68,6 +83,7 @@ public class ElementMatrix{
     eMatrix[x1][y1] = eMatrix[x2][y2] ;
     eMatrix[x2][y2] = temp ;
     //}
+    }
   }
   
   public void clear(){
