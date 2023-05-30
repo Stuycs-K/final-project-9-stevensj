@@ -5,21 +5,25 @@ public class MovableSolid extends Element{
   }
 
   public boolean move(ElementMatrix env, int x, int y){
+    return this.move(env, x, y, 1) ;
+  }
+  public boolean move(ElementMatrix env, int x, int y, int speed){
     
     if(env.MovSolMoveCheck(y+1,x)){
-      env.swap(y,x,y+1,x) ;
-      this.setPosition(x,y+1) ;
+      env.moveExtended(y,x,y+speed,x,0) ;
+      //this.setPosition(x,y+speed) ;
       return true ;
     }else{
       //int result = (int)random(2) ;//ParticleSim.rng(3) ;
-      if(((int)random(2) == 1)&&(env.MovSolMoveCheck(y+1,x+1))){
-        env.swap(y,x,y+1,x+1) ;
-        this.setPosition(x+1,y+1) ;
+      if(((int)random(2) == 1)&&(env.MovSolMoveCheck(y+1,x+1))){//&&(env.MovSolMoveCheck(y+1,x+1))
+        env.moveExtended(y,x,y+speed,x+speed,0) ;
+        //this.setPosition(x+speed,y+speed) ;
+        //println("right") ;
         return true ;
       }
-      if(((int)random(2) == 0)&&(env.MovSolMoveCheck(y+1,x-1))){
-        env.swap(y,x,y+1,x-1) ;
-        this.setPosition(x-1, y+1) ;
+      if(((int)random(2) == 0)&&(env.MovSolMoveCheck(y+1,x-1))){//&&(env.MovSolMoveCheck(y+1,x-1))
+        env.moveExtended(y,x,y+speed,x-speed,0) ;
+        //this.setPosition(x-speed, y+speed) ;
         return true ;
       }
     }
