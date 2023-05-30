@@ -2,6 +2,9 @@ ElementMatrix env ;
 boolean mouseInterval ;
 int mouseCountdown ;
 String ElementChosen = "NONE";
+static int MovSol = 81 ;
+static int ImmovSol = 87 ;
+static int Liq = 69 ;
 
 void setup(){
   size(500,500) ;
@@ -18,7 +21,7 @@ void draw(){
     while(mouseInterval&& (mouseCountdown==0)){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
-  setParticle(mousex, mousey,-1) ;
+  setParticle(mousex, mousey,key) ;
   System.out.println(env.get(mousey,mousex)) ;
   mouseCountdown += 1 ;
   }
@@ -65,8 +68,16 @@ void movement(){
 
 void setParticle(int x, int y, int type){
   Element e = new Element();
-  if(type == -1){
+  if(type == MovSol){
     e = new MovableSolid() ;
+    env.set(y,x, e) ;
+  }
+  if(type == ImmovSol){
+    e = new ImmovableSolid() ;
+    env.set(y,x, e) ;
+  }
+  if(type == Liq){
+    e = new Liquid() ;
     env.set(y,x, e) ;
   }
     ElementChosen = e.toString() ;
