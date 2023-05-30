@@ -59,11 +59,12 @@ void setParticle(int x, int y, int type){
   }
 }
 
-public static int rng(int possibilities){
-    return (int)Math.random() % possibilities ;
-  }
+/*public static int rng(int possibilities){
+    return random(1,possibilities) ;
+    //return ((int)(Math.random()*100)+1) % possibilities ;
+  }*/
 
-void mouseDragged(){
+void mousePressed(){
   //while(mouseInterval && (mouseCountdown==0)){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
