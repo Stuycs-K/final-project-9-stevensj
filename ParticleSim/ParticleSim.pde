@@ -4,7 +4,7 @@ int mouseCountdown ;
 
 void setup(){
   size(500,500) ;
-  env = new ElementMatrix(5) ;
+  env = new ElementMatrix(3) ;
 }
 
 void draw(){
@@ -12,7 +12,16 @@ void draw(){
   movement() ;
   if(mouseCountdown > 0){
     mouseCountdown-- ;
+  }else{
+    while(mouseInterval&& (mouseCountdown==0)){
+  int mousex = mouseX/10 ;
+  int mousey = mouseY/10 ;
+  setParticle(mousex, mousey,-1) ;
+  System.out.println(env.get(mousey,mousex)) ;
+  mouseCountdown += 1 ;
   }
+  }
+  println(mouseCountdown) ;
   
 }
 
@@ -65,17 +74,21 @@ void setParticle(int x, int y, int type){
   }*/
 
 void mousePressed(){
-  //while(mouseInterval && (mouseCountdown==0)){
+  mouseInterval = true ;
+}
+  /*//&& (mouseCountdown==0)
+  while(mouseInterval){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
   setParticle(mousex, mousey,-1) ;
   System.out.println(env.get(mousey,mousex)) ;
- // mouseCountdown += 1 ;
-//  }
-}
-void mouseClicked(){
+  mouseCountdown += 1 ;
+  }
+  
+}*/
+/*void mousePressed(){
   mouseInterval = true ;
-}
+}*/
 void mouseReleased(){
   mouseInterval = false ;
 }
