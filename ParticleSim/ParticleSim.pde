@@ -51,7 +51,7 @@ void drawPixels(){
   }
 }
 
-void movement(){
+/*void movement(){
   for(int y = height-9 ; y >= 0  ; y-=10){
     for(int x = 0 ; x < width-9 ; x+=10){
       try{
@@ -64,9 +64,9 @@ void movement(){
     }
       }
       //env.movementReset() ;
-    }
+    }*/
     
-/*void movement(){
+void movement(){
   
   for(int i = 0 ; i < elementsPresent.size() ; i++){
     Element e = elementsPresent.get(i) ;
@@ -76,7 +76,7 @@ void movement(){
     
   }
   
-}*/
+}
   
 
   
