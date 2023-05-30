@@ -26,7 +26,7 @@ void draw(){
   mouseCountdown += 1 ;
   }
   }
-  println(mouseCountdown) ;
+  //println(mouseCountdown) ;
   
 }
 
@@ -49,7 +49,7 @@ void drawPixels(){
 }
 
 void movement(){
-  for(int y = 0 ; y < height-9 ; y+=10){
+  for(int y = height-9 ; y >= 0  ; y-=10){
     for(int x = 0 ; x < width-9 ; x+=10){
       try{
         //System.out.println(env.get(y,x)) ;
@@ -60,7 +60,7 @@ void movement(){
       }
     }
       }
-      env.movementReset() ;
+      //env.movementReset() ;
     }
   
 
