@@ -81,7 +81,15 @@ public class ElementMatrix{
       }
     }else{*/
     eMatrix[x1][y1] = eMatrix[x2][y2] ;
+    try{
+      eMatrix[x1][y1].setPosition(y1,x1) ;
+    }catch(NullPointerException e){
+    }
     eMatrix[x2][y2] = temp ;
+    try{
+      eMatrix[x2][y2].setPosition(y2,x2) ;
+    }catch(NullPointerException e){
+    }
     //}
     }
   }
