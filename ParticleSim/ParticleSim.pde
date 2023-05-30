@@ -4,10 +4,10 @@ boolean mouseInterval ;
 int mouseCountdown ;
 int ticks = 0;
 String ElementChosen = "NONE";
-int selection = 81 ;
-static int MovSol = 81 ;
-static int ImmovSol = 87 ;
-static int Liq = 69 ;
+int selection = 113 ; //81
+static int MovSol = 113 ; //81
+static int ImmovSol = 119 ; // 87
+static int Liq = 101 ; //69
 
 void setup(){
   size(500,500) ;
