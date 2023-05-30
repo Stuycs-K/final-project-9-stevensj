@@ -62,8 +62,8 @@ public class Element{
   }
   
   
-  public boolean move(ElementMatrix env, int x, int y){
-    return true ;
+  public void move(ElementMatrix env, int x, int y){
+    
   }
   
   
