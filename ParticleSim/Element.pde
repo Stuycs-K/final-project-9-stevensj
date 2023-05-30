@@ -3,7 +3,6 @@ public class Element{
   private int temp ;
   private color elementColor;
   private String name ;
-  public boolean moved ;
   //private int EX ;
   //private int EY ;
   
@@ -11,6 +10,11 @@ public class Element{
     temp = 20 ;
     elementColor = color(0) ;
     name = "EMPTY" ;
+  }
+  public Element(color Ecolor, String newName){
+    temp = 20 ;
+    elementColor = Ecolor ;
+    name = newName ;
   }
   
   public void pixelDraw(int x, int y){
