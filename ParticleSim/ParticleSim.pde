@@ -1,13 +1,16 @@
 ElementMatrix env ;
-ArrayList<Element> elementsPresent = new ArrayList<Element>() ;
+//ArrayList<Element> elementsPresent = new ArrayList<Element>() ;
 boolean mouseInterval ;
 int mouseCountdown ;
+int mouseSize = 0;
 int ticks = 0;
 String ElementChosen = "NONE";
 int selection = 81 ;
 static int MovSol = 81 ;
 static int ImmovSol = 87 ;
 static int Liq = 69 ;
+static int SAND = 97 ;
+static int WATER = 115 ;
 
 void setup(){
   size(500,500) ;
@@ -21,13 +24,16 @@ void draw(){
   movement() ;
   text(ElementChosen,35,40) ;
   text("" + key, height-10,width-10) ;
+  stroke(255) ;
+  square(mouseX,mouseY,(1+mouseSize)*10) ;
   if(mouseCountdown > 0){
     mouseCountdown-- ;
   }else{
     while(mouseInterval&& (mouseCountdown==0)){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
-  setParticle(mousex, mousey,selection) ;
+  //pen(mousex,mousey,mouseSize,selection) ;
+  setParticle(mousex,mousey,selection) ;
   System.out.println(env.get(mousey,mousex)) ;
   mouseCountdown += 1 ;
   }
@@ -35,6 +41,14 @@ void draw(){
   ticks ++ ;
  // println(elementsPresent.size()) ;
   
+}
+
+void pen(int startx, int starty, int size, int input){
+  for(int x = startx ; x < startx+size ; x++){
+    for(int y = starty ; y < starty+size ; y++){
+      setParticle(x,y,input) ;
+    }
+  }
 }
 
 void drawPixels(){
@@ -49,6 +63,7 @@ void drawPixels(){
       }
     }
   }
+  
 }
 
 void movement(){
@@ -94,9 +109,15 @@ void setParticle(int x, int y, int type){
   if(type == Liq){
     e = new Liquid() ;
   }
+  if(type == SAND){
+    e = new Sand() ;
+  }
+  if(type == WATER){
+    e = new Water() ;
+  }
     env.set(y,x,e) ;
     ElementChosen = e.toString() ;
-    elementsPresent.add(e) ;
+    //elementsPresent.add(e) ;
 }
 
 /*public static int rng(int possibilities){
@@ -127,6 +148,12 @@ void mouseReleased(){
 void keyPressed(){
   if(key == 44){
     env.clear() ;
+  }
+  if(key == 61){
+    mouseSize++ ;
+  }
+  if(key == 45){
+    mouseSize-- ;
   }
   else
   {
