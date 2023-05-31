@@ -2,24 +2,33 @@ ElementMatrix env ;
 ArrayList<Element> elementsPresent = new ArrayList<Element>() ;
 boolean mouseInterval ;
 int mouseCountdown ;
-int ticks = 0;
+public int ticks = 0;
 String ElementChosen = "NONE";
+String ElementHover = "NONE" ;
 int selection = 113 ; //81
 static int MovSol = 113 ; //81
 static int ImmovSol = 119 ; // 87
 static int Liq = 101 ; //69
 
 void setup(){
-  size(500,500) ;
+  size(500,1000) ;
   background(0) ;
   env = new ElementMatrix() ;
 }
 
 void draw(){
+  
   background(0) ;
   drawPixels() ;
+  if(key!=104){
   movement() ;
+  }
   text(ElementChosen,35,40) ;
+  try{
+  text(env.get(mouseX,mouseY).toString(), 165, 40) ;
+  }catch(NullPointerException e){
+    text("NONE", 165, 40) ;
+  }
   text("" + key, height-10,width-10) ;
   if(mouseCountdown > 0){
     mouseCountdown-- ;
@@ -28,7 +37,7 @@ void draw(){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
   setParticle(mousex, mousey,selection) ;
-  System.out.println(env.get(mousey,mousex)) ;
+  //System.out.println(env.get(mousey,mousex)) ;
   mouseCountdown += 1 ;
   }
   }
@@ -85,7 +94,7 @@ void movement(){
 
 void setParticle(int x, int y, int type){
   Element e = new Element();
-  if(type == MovSol){
+  if(type == MovSol || type == 104){
     e = new MovableSolid() ;
   }
   if(type == ImmovSol){
