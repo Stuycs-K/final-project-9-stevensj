@@ -3,6 +3,9 @@ public class MovableSolid extends Element{
   public MovableSolid(){
     super(color(222, 186, 42),"MOVABLE_SOLID") ;
   }
+  public MovableSolid(color Ecolor, String newName){
+    super(Ecolor, newName) ;
+  }
 
   public void move(ElementMatrix env, int x, int y){ 
     if(env.MovSolMoveCheck(y+1,x)){
