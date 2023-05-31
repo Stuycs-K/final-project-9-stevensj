@@ -3,6 +3,9 @@ public class Liquid extends Element{
   public Liquid(){
     super(color(111, 0, 255), "LIQUID") ;
   }
+  public Liquid(color Ecolor, String newName){
+    super(Ecolor, newName) ;
+  }
   
   public void move(ElementMatrix env, int x, int y){
     if(env.isEmpty(y+1,x)){
