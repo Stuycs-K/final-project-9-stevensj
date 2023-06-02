@@ -13,10 +13,10 @@ public class MovableSolid extends Element{
     if((env.isEmpty(y+1,x) || env.get(y+1,x) instanceof Liquid)){
       env.swap(y,x,y+1,x) ;
     }else{
-      if(((int)random(2) == 1)&&((env.isEmpty(y+1,x+1) || env.get(y-1,x) instanceof Liquid)){
+      if(((int)random(2) == 1)&&((env.isEmpty(y+1,x+1) || env.get(y-1,x+1) instanceof Liquid))){
         env.swap(y,x,y+1,x+1) ;
       }
-      if(((int)random(2) == 0)&&((env.isEmpty(y+1,x-1) || env.get(y-1,x) instanceof Liquid))){
+      if(((int)random(2) == 0)&&((env.isEmpty(y+1,x-1) || env.get(y-1,x-1) instanceof Liquid))){
         env.swap(y,x,y+1,x-1) ;
       }
     }
