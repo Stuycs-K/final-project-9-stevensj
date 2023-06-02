@@ -7,32 +7,7 @@ public class ElementMatrix{
     int mwidth = width/10 ;
     eMatrix = new Element[mheight][mwidth] ;
   }
-  //creates border of specified width around the edge of the window
-  public ElementMatrix(int borderWidth){
-    int mheight = height/10 ;
-    int mwidth = width/10 ;
-    eMatrix = new Element[mheight][mwidth] ;
-    for(int x = 0 ; x < mwidth ; x++){
-      for(int y = 0 ; y < borderWidth ; y++){
-        eMatrix[y][x] = new Border() ;
-      }
-    }
-    for(int x = 0 ; x < mwidth ; x++){
-      for(int y = mheight-1 ; y > mheight-1-borderWidth ; y--){
-        eMatrix[y][x] = new Border() ;
-      }
-    }
-    for(int x = 0 ; x < borderWidth ; x++){
-      for(int y = borderWidth ; y < mheight ; y++){
-        eMatrix[y][x] = new Border() ;
-      }
-    }
-    for(int x = mwidth-1 ; x > mwidth-1-borderWidth ; x--){
-      for(int y = borderWidth ; y < mheight ; y++){
-        eMatrix[y][x] = new Border() ;
-      }
-    }
-  } 
+
   //checks that the mouse is in the window, prevents crashing
   public boolean isValid(int x, int y){
     return (x < eMatrix.length && x >= 0) && (y < eMatrix[0].length && y >= 0) ;
