@@ -47,13 +47,13 @@ void draw(){
   //heat tools
   if(key == 113){
     try{
-        env.get(mousey,mousex).heat((int)(20*mouseSpeed)) ;
+        env.get(mousey,mousex).heat((int)(20*mouseSpeed + 5)) ;
       }catch(NullPointerException e){
       }
   }
   if(key == 119){
     try{
-        env.get(mousey,mousex).heat((int)(-20*mouseSpeed)) ;
+        env.get(mousey,mousex).heat((int)(-20*mouseSpeed + 5)) ;
       }catch(NullPointerException e){
       }
   }
