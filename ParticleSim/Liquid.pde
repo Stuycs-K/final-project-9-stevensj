@@ -13,7 +13,6 @@ public class Liquid extends Element{
       //this.setPosition(x, y+1) ;
         //return true ;
     }
-      //int result = (int)random(2) ;//ParticleSim.rng(3) ;
       if(((int)random(2) == 1)&&(env.isEmpty(y,x+1))){
         env.swap(y,x,y,x+1) ;
         //this.setPosition(x+1, y) ;
