@@ -8,6 +8,7 @@ public class MovableSolid extends Element{
   }
 
   public void move(ElementMatrix env, int x, int y){ 
+    super.move(env,x,y) ;
     if(env.MovSolMoveCheck(y+1,x)){
       env.swap(y,x,y+1,x) ;
       //this.setPosition(x,y+1) ;
