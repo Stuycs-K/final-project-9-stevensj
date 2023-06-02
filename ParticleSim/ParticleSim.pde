@@ -5,10 +5,11 @@ int mouseCountdown ;
 int mouseSize = 0;
 int ticks = 0;
 String ElementChosen = "NONE";
-int selection = 81 ;
+int selection = 97 ;
 static int MovSol = 81 ;
 static int ImmovSol = 87 ;
 static int Liq = 69 ;
+static int Gas = 82 ;
 static int SAND = 97 ;
 static int WATER = 115 ;
 
@@ -109,13 +110,18 @@ void setParticle(int x, int y, int type){
   if(type == Liq){
     e = new Liquid() ;
   }
+  if(type == Gas){
+    e = new Gas() ;
+  }
   if(type == SAND){
     e = new Sand() ;
   }
   if(type == WATER){
     e = new Water() ;
   }
-    env.set(y,x,e) ;
+    if(!(e.toStringProper().equals("EMPTY"))){
+      env.set(y,x,e) ;
+    }
     ElementChosen = e.toString() ;
     //elementsPresent.add(e) ;
 }
