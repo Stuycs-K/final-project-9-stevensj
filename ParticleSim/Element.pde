@@ -63,10 +63,39 @@ public class Element{
   
   
   public void move(ElementMatrix env, int x, int y){
+    try{
+      env.get(y,x).conduct(env.get(y,x+1)) ;
+    }catch(NullPointerException e){
+    }
+    try{
+      env.get(y,x).conduct(env.get(y,x-1)) ;
+    }catch(NullPointerException e){
+    }
+    try{
+      env.get(y,x).conduct(env.get(y-1,x)) ;
+    }catch(NullPointerException e){
+    }
+    try{
+      env.get(y,x).conduct(env.get(y+1,x+1)) ;
+    }catch(NullPointerException e){
+    }
     
   }
   
-  
+  public void heat(int amt){
+    temp += amt ;
+  }
+  public void setTemp(int newTemp){
+    temp = newTemp ;
+  }
+  public void conduct(Element other){
+    if(ticks % 2 == 0){
+    if(temp < other.temp){
+      temp++ ;
+      other.temp-- ;
+    }
+    }
+  }
   
   public String toString(){
     return name + ", " + temp + "C" ;
