@@ -44,7 +44,7 @@ void draw(){
   //pen(mousex,mousey,mouseSize,selection) ;
   if(key == 113){
     try{
-        env.get(mousey,mousex).heat((int)(20*mouseSpeed+10)) ;
+        env.get(mousey,mousex).heat((int)(20*mouseSpeed)) ;
         System.out.println(env.get(mousey,mousex)) ;
       }catch(NullPointerException e){
       }
@@ -52,7 +52,7 @@ void draw(){
   }
   if(key == 119){
     try{
-        env.get(mousey,mousex).heat((int)(-20*mouseSpeed+10)) ;
+        env.get(mousey,mousex).heat((int)(-20*mouseSpeed)) ;
         System.out.println(env.get(mousey,mousex)) ;
       }catch(NullPointerException e){
       }
