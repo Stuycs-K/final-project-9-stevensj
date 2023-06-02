@@ -42,6 +42,12 @@ public class Element{
   //increases element age and attempts to conduct heat to neighbors.
   public void move(ElementMatrix env, int x, int y){
     age++ ;
+    if(temp > 20){
+      temp -= 0.25 ;
+    }
+    if(temp < 20){
+      temp += 0.25 ;
+    }
     try{
       env.get(y,x).conduct(env.get(y,x+1)) ;
     }catch(NullPointerException e){
@@ -74,8 +80,8 @@ public class Element{
   public void conduct(Element other){
     if(ticks % 5 == 0){
     if(temp < other.temp){
-      temp+= other.heatCapacity / heatCapacity ;
-      other.temp-= heatCapacity / other.heatCapacity ;
+      temp+= heatCapacity/other.heatCapacity ;
+      other.temp-= other.heatCapacity/heatCapacity;
     }
     }
   }
