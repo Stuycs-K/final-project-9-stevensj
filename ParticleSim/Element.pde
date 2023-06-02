@@ -1,8 +1,10 @@
 public class Element{
   //Temperature will be defined in terms of celsius to simplify future phase changes
-  private int temp ;
+  private float temp ;
   private color elementColor;
   private String name ;
+  private float heatCapacity ;
+  private int age ;
   private int EX ;
   private int EY ;
   
@@ -10,11 +12,13 @@ public class Element{
     temp = 20 ;
     elementColor = color(0) ;
     name = "EMPTY" ;
+    heatCapacity = 1 ;
   }
   public Element(color Ecolor, String newName){
     temp = 20 ;
     elementColor = Ecolor ;
     name = newName ;
+    heatCapacity = 1 ;
   }
   
   public void pixelDraw(int x, int y){
@@ -42,7 +46,7 @@ public class Element{
     name = newName ;
   }
   
-  public int getTemp(){
+  public float getTemp(){
     return temp ;
   }
   
@@ -63,6 +67,7 @@ public class Element{
   
   
   public void move(ElementMatrix env, int x, int y){
+    age++ ;
     try{
       env.get(y,x).conduct(env.get(y,x+1)) ;
     }catch(NullPointerException e){
@@ -80,25 +85,29 @@ public class Element{
     }catch(NullPointerException e){
     }
     
+    
   }
   
-  public void heat(int amt){
+  public void heat(float amt){
     temp += amt ;
   }
-  public void setTemp(int newTemp){
+  public void setTemp(float newTemp){
     temp = newTemp ;
   }
   public void conduct(Element other){
-    if(ticks % 2 == 0){
+    if(ticks % 3 == 0){
     if(temp < other.temp){
-      temp++ ;
-      other.temp-- ;
+      temp+= other.heatCapacity / heatCapacity ;
+      other.temp-= heatCapacity / other.heatCapacity ;
     }
     }
   }
+  public void setHeatCapacity(float amt){
+    heatCapacity = amt ;
+  }
   
   public String toString(){
-    return name + ", " + temp + "C" ;
+    return name + ", " + temp + "C  " + age  ;
   }
   public String toStringProper(){
     return name ;
