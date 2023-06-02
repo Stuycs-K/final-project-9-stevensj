@@ -1,3 +1,4 @@
+//Immovable Elements that can still interact with the environment
 public class ImmovableSolid extends Element{
   
   public ImmovableSolid(){

@@ -1,3 +1,4 @@
+//Always moves downward, creates pyramids and sinks in liquids
 public class MovableSolid extends Element{
   
   public MovableSolid(){
@@ -9,24 +10,16 @@ public class MovableSolid extends Element{
 
   public void move(ElementMatrix env, int x, int y){ 
     super.move(env,x,y) ;
-    if(env.MovSolMoveCheck(y+1,x)){
+    if((env.isEmpty(y+1,x) || env.get(y+1,x) instanceof Liquid)){
       env.swap(y,x,y+1,x) ;
-      //this.setPosition(x,y+1) ;
-      //return true ;
     }else{
-      //int result = (int)random(2) ;//ParticleSim.rng(3) ;
-      if(((int)random(2) == 1)&&(env.MovSolMoveCheck(y+1,x+1))){
+      if(((int)random(2) == 1)&&((env.isEmpty(y+1,x+1) || env.get(y-1,x) instanceof Liquid)){
         env.swap(y,x,y+1,x+1) ;
-        //this.setPosition(x+1,y+1) ;
-        //return true ;
       }
-      if(((int)random(2) == 0)&&(env.MovSolMoveCheck(y+1,x-1))){
+      if(((int)random(2) == 0)&&((env.isEmpty(y+1,x-1) || env.get(y-1,x) instanceof Liquid))){
         env.swap(y,x,y+1,x-1) ;
-        //this.setPosition(x-1, y+1) ;
-        //return true ;
       }
     }
-    //return false ;
   }
         
     

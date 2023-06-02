@@ -1,3 +1,4 @@
+// Immutable Solid that surrounds environment
 public class Border extends Element{
   
   public Border(){

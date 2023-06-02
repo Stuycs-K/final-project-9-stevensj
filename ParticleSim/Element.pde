@@ -1,3 +1,4 @@
+//Main parent class of all other Elements
 public class Element{
   //Temperature will be defined in terms of celsius to simplify future phase changes
   private float temp ;
@@ -5,12 +6,10 @@ public class Element{
   private String name ;
   private float heatCapacity ;
   private int age ;
-  private int EX ;
-  private int EY ;
   
   public Element(){
     temp = 20 ;
-    elementColor = color(0) ;
+    elementColor = color(255) ;
     name = "EMPTY" ;
     heatCapacity = 1 ;
   }
@@ -20,21 +19,11 @@ public class Element{
     name = newName ;
     heatCapacity = 1 ;
   }
-  
+ //draws a 10x10 square on the screen with the element's color
   public void pixelDraw(int x, int y){
     for(int i = x ; i < x+10 ; i++){
       for(int k = y ; k < y+10 ; k++){
         set(i,k,elementColor) ;
-      }
-    }
-        //println("drawn" + this.toString()) ;
-  }
-  
-  public void pixelDraw(){
-    for(int i = EX*10 ; i < i+10 ; i++){
-      for(int k = EX*10 ; k < k+10 ; k++){
-        set(i,k,elementColor) ;
-        println("drawn" + this.toString()) ;
       }
     }
   }
@@ -50,22 +39,7 @@ public class Element{
     return temp ;
   }
   
-  
-    
-   
-  public void setPosition(int x, int y){
-    EX = x ;
-    EY = y ;
-  }
-  
-  public int eX(){
-    return EX ;
-  }
-  public int eY(){
-    return EY ;
-  }
-  
-  
+  //increases element age and attempts to conduct heat to neighbors.
   public void move(ElementMatrix env, int x, int y){
     age++ ;
     try{
@@ -94,8 +68,11 @@ public class Element{
   public void setTemp(float newTemp){
     temp = newTemp ;
   }
+  
+  //roughly mimics heat transfer, with some substances requiring more energy to be raised by 1 degree.
+  //activates every fifth tick to slow down simulation to reasonable level
   public void conduct(Element other){
-    if(ticks % 3 == 0){
+    if(ticks % 5 == 0){
     if(temp < other.temp){
       temp+= other.heatCapacity / heatCapacity ;
       other.temp-= heatCapacity / other.heatCapacity ;

@@ -1,33 +1,33 @@
 ElementMatrix env ;
-//ArrayList<Element> elementsPresent = new ArrayList<Element>() ;
 boolean mouseInterval ;
 int mouseCountdown ;
 int mouseSize = 0;
 float mouseSpeed = 0 ;
 int ticks = 0;
 String ElementChosen = "NONE";
+//These Integers represent the ASCII values of certain keys, which are used to select the element to be drawn.
 int selection = 97 ;
-static int MovSol = 81 ;
-static int ImmovSol = 87 ;
-static int Liq = 69 ;
-static int Gas = 82 ;
-static int SAND = 97 ;
-static int WATER = 115 ;
+static int MovSol = 81 ; //debug, Q
+static int ImmovSol = 87 ;//debug, W
+static int Liq = 69 ;//debug, E
+static int Gas = 82 ;//debug, R
+static int SAND = 97 ;// a
+static int WATER = 115 ;// s
 
 void setup(){
   size(500,500) ;
   background(0) ;
-  env = new ElementMatrix() ;
+  env = new ElementMatrix(1) ;
 }
 
 void draw(){
   background(0) ;
   drawPixels() ;
   movement() ;
+  
+  //Displays chosen element, last pressed key, and element at mouse location
   text(ElementChosen,35,40) ;
   text("" + key, height-10,width-10) ;
-  stroke(255) ;
-  square(mouseX,mouseY,(1+mouseSize)*10) ;
   int currentx = mouseX/10 ;
   int currenty = mouseY/10 ;
   try{
@@ -35,32 +35,32 @@ void draw(){
   }catch(NullPointerException e){
   }
   
+  //uses countdown timer to limit elements drawn
   if(mouseCountdown > 0){
     mouseCountdown-- ;
   }else{
     while(mouseInterval&& (mouseCountdown==0)){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
-  //pen(mousex,mousey,mouseSize,selection) ;
+  
+  //heat tools
   if(key == 113){
     try{
         env.get(mousey,mousex).heat((int)(20*mouseSpeed)) ;
-        System.out.println(env.get(mousey,mousex)) ;
       }catch(NullPointerException e){
       }
-    println("heated") ;
   }
   if(key == 119){
     try{
         env.get(mousey,mousex).heat((int)(-20*mouseSpeed)) ;
-        System.out.println(env.get(mousey,mousex)) ;
       }catch(NullPointerException e){
       }
-    println("heated") ;
-  }else
+  }
+  
+  
+  else
   {
     setParticle(mousex,mousey,selection) ;
-    System.out.println(env.get(mousey,mousex)) ;
   }
   mouseCountdown += 1 ;
   }
@@ -69,25 +69,15 @@ void draw(){
   int changeY = mouseY - pmouseY ;
   mouseSpeed = sqrt((changeX*changeX)+(changeY*changeY)) ;
   ticks ++ ;
- // println(elementsPresent.size()) ;
   
 }
 
-void pen(int startx, int starty, int size, int input){
-  for(int x = startx ; x < startx+size ; x++){
-    for(int y = starty ; y < starty+size ; y++){
-      setParticle(x,y,input) ;
-    }
-  }
-}
-
+//drawPixels() loops through the ElementMatrix and attempts to draw each element present, creating the visuals.
 void drawPixels(){
   for(int y = 0 ; y < height-9 ; y+=10){
     for(int x = 0 ; x < width-9 ; x+=10){
       try{
-        //System.out.println(env.get(y,x)) ;
         env.get(y/10,x/10).pixelDraw(x,y) ;
-        //set(x,y,color(124,35,100)) ;
       }catch(NullPointerException e){
         
       }
@@ -96,33 +86,20 @@ void drawPixels(){
   
 }
 
+//movement() loops through the array and attempts to call move() on each element present, executing the movement and heat conduction of the simulation.
 void movement(){
   for(int y = height-9 ; y >= 0  ; y-=10){
     for(int x = 0 ; x < width-9 ; x+=10){
       try{
-        //System.out.println(env.get(y,x)) ;
         env.get(y/10,x/10).move(env,x/10,y/10) ;
-        //set(x,y,color(124,35,100)) ;
       }catch(NullPointerException e){
         
       }
     }
       }
-      //env.movementReset() ;
     }
     
-/*void movement(){
-  
-  for(int i = 0 ; i < elementsPresent.size() ; i++){
-    Element e = elementsPresent.get(i) ;
-    if(e.move(env, e.eX(), e.eY()) ){
-      //println("moved" + ticks + " " +e.eX() +" " + e.eY() + " " + env.get(e.eX(), e.eY())) ;
-    }
-    
-  }
-  
-}*/
-  
+//sets specified position in the ElementMatrix to the element corresponding to the key last pressed.
 void setParticle(int x, int y, int type){
   Element e = new Element();
   if(type == MovSol){
@@ -147,43 +124,19 @@ void setParticle(int x, int y, int type){
       env.set(y,x,e) ;
     }
     ElementChosen = e.toString() ;
-    //elementsPresent.add(e) ;
 }
-
-/*public static int rng(int possibilities){
-    return random(1,possibilities) ;
-    //return ((int)(Math.random()*100)+1) % possibilities ;
-  }*/
 
 void mousePressed(){
   mouseInterval = true ;
 }
-  /*//&& (mouseCountdown==0)
-  while(mouseInterval){
-  int mousex = mouseX/10 ;
-  int mousey = mouseY/10 ;
-  setParticle(mousex, mousey,-1) ;
-  System.out.println(env.get(mousey,mousex)) ;
-  mouseCountdown += 1 ;
-  }
-  
-}*/
-/*void mousePressed(){
-  mouseInterval = true ;
-}*/
 void mouseReleased(){
   mouseInterval = false ;
 }
 
+//either clears the environment or changes selected element
 void keyPressed(){
   if(key == 44){
     env.clear() ;
-  }
-  if(key == 61){
-    mouseSize++ ;
-  }
-  if(key == 45){
-    mouseSize-- ;
   }
   else
   {

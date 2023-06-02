@@ -1,3 +1,4 @@
+//Prioritizes upward movement, will move in any direction it can otherwise
 public class Gas extends Element{
   public boolean moved = false;
   private int lastTick = 0 ;
