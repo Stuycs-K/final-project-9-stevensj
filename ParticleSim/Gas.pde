@@ -10,21 +10,22 @@ public class Gas extends Element{
   }
   
   public void move(ElementMatrix env, int x, int y){
+    super.move(env,x,y) ;
     if(lastTick != ticks){
       moved = false ;
     }
     if(!moved){
-      if(((int)random(4) == 1 || (int)random(4) == 2)&&(env.isEmpty(y-1,x))){
+      if(((int)random(4) == 1 || (int)random(4) == 2)&&(env.isEmpty(y-1,x) || env.get(y-1,x) instanceof Liquid)){
         env.swap(y,x,y-1,x) ;
         lastTick = ticks ;
         moved = true ;
       }else
-      if(((int)random(4) == 3)&&(env.isEmpty(y-1,x-1))){
+      if(((int)random(4) == 3)&&(env.isEmpty(y-1,x-1) || env.get(y-1,x-1) instanceof Liquid)){
         env.swap(y,x,y-1,x-1) ;
         lastTick = ticks ;
         moved = true ;
       }else
-      if(((int)random(4) == 0)&&(env.isEmpty(y-1,x+1))){
+      if(((int)random(4) == 0)&&(env.isEmpty(y-1,x+1) || env.get(y-1,x+1) instanceof Liquid)){
         env.swap(y,x,y-1,x+1) ;
         lastTick = ticks ;
         moved = true ;
