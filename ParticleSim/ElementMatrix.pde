@@ -49,7 +49,7 @@ public class ElementMatrix{
   
   public void set(int x, int y, Element E){
     if(this.isValid(x,y)){
-    if(!(eMatrix[x][y] instanceof Border)){
+    if(this.isEmpty(x,y)){
       eMatrix[x][y] = E ;
       eMatrix[x][y].setPosition(y,x) ;
     }
