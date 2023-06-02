@@ -1,7 +1,7 @@
 public class Glass extends ImmovableSolid{
   
     public Glass(){
-    super(color(150),"Glass") ;
+    super(color(150),"GLASS") ;
     this.setHeatCapacity(0.84) ;
   }
   public void move(ElementMatrix env, int x, int y){
