@@ -55,6 +55,12 @@ public class ElementMatrix{
     }
     }
   }
+  public void change(int x, int y, Element E){
+    if(this.isValid(x,y)){
+      eMatrix[x][y] = E ;
+      eMatrix[x][y].setPosition(y,x) ;
+    }
+  }
   public boolean isEmpty(int x, int y){
     if(this.isValid(x,y)){
     return eMatrix[x][y] == null ;
