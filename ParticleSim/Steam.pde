@@ -2,6 +2,7 @@ public class Steam extends Gas{
   
   public Steam(){
     super(color(192, 218, 235),"STEAM") ;
+    this.setHeatCapacity(1.996) ;
     this.setTemp(100) ;
   }
   public void move(ElementMatrix env, int x, int y){

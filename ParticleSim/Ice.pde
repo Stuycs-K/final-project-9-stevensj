@@ -1,7 +1,8 @@
 public class Ice extends ImmovableSolid{
     
   public Ice(){
-    super(color(192, 218, 235),"STEAM") ;
+    super(color(125, 222, 255),"ICE") ;
+    this.setHeatCapacity(2.108) ;
     this.setTemp(0) ;
   }
   public void move(ElementMatrix env, int x, int y){
