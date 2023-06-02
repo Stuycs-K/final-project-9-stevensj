@@ -13,11 +13,12 @@ static int Liq = 69 ;//debug, E
 static int Gas = 82 ;//debug, R
 static int SAND = 97 ;// a
 static int WATER = 115 ;// s
+static int IRON = 100 ;// d
 
 void setup(){
   size(500,500) ;
   background(0) ;
-  env = new ElementMatrix(1) ;
+  env = new ElementMatrix() ;
 }
 
 void draw(){
@@ -119,6 +120,9 @@ void setParticle(int x, int y, int type){
   }
   if(type == WATER){
     e = new Water() ;
+  }
+  if(type == IRON){
+    e = new Iron() ;
   }
     if(!(e.toStringProper().equals("EMPTY"))){
       env.set(y,x,e) ;
