@@ -71,4 +71,7 @@ public class Element{
   public String toString(){
     return name + ", " + temp + "C" ;
   }
+  public String toStringProper(){
+    return name ;
+  }
 }
