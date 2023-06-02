@@ -3,6 +3,7 @@ ElementMatrix env ;
 boolean mouseInterval ;
 int mouseCountdown ;
 int mouseSize = 0;
+float mouseSpeed = 0 ;
 int ticks = 0;
 String ElementChosen = "NONE";
 int selection = 97 ;
@@ -27,6 +28,13 @@ void draw(){
   text("" + key, height-10,width-10) ;
   stroke(255) ;
   square(mouseX,mouseY,(1+mouseSize)*10) ;
+  int currentx = mouseX/10 ;
+  int currenty = mouseY/10 ;
+  try{
+      text(env.get(currenty,currentx).toString(), 0, 400) ;
+  }catch(NullPointerException e){
+  }
+  
   if(mouseCountdown > 0){
     mouseCountdown-- ;
   }else{
@@ -34,11 +42,32 @@ void draw(){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
   //pen(mousex,mousey,mouseSize,selection) ;
-  setParticle(mousex,mousey,selection) ;
-  System.out.println(env.get(mousey,mousex)) ;
+  if(key == 113){
+    try{
+        env.get(mousey,mousex).heat((int)(20*mouseSpeed+10)) ;
+        System.out.println(env.get(mousey,mousex)) ;
+      }catch(NullPointerException e){
+      }
+    println("heated") ;
+  }
+  if(key == 119){
+    try{
+        env.get(mousey,mousex).heat((int)(-20*mouseSpeed+10)) ;
+        System.out.println(env.get(mousey,mousex)) ;
+      }catch(NullPointerException e){
+      }
+    println("heated") ;
+  }else
+  {
+    setParticle(mousex,mousey,selection) ;
+    System.out.println(env.get(mousey,mousex)) ;
+  }
   mouseCountdown += 1 ;
   }
   }
+  int changeX = mouseX - pmouseX ;
+  int changeY = mouseY - pmouseY ;
+  mouseSpeed = sqrt((changeX*changeX)+(changeY*changeY)) ;
   ticks ++ ;
  // println(elementsPresent.size()) ;
   
@@ -94,11 +123,6 @@ void movement(){
   
 }*/
   
-
-  
-
-
-
 void setParticle(int x, int y, int type){
   Element e = new Element();
   if(type == MovSol){
