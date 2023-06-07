@@ -217,6 +217,13 @@ public class ElementMatrix{
       finalLine.add(point) ;
     }
   }
+  
+  public void drawLine(int xi, int yi,int xf,int yf){
+    Position start = new Position(xi, yi) ;
+    Position end = new Position(xf, yf) ;
+    ArrayList<Position> linePoints = this.lineDraw(start,end) ;
+    //finish
+  }
       
   
   public void clear(){
