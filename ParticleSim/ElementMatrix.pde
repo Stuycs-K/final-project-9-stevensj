@@ -191,6 +191,34 @@ public class ElementMatrix{
   
   }
   
+  public ArrayList<Position> lineDraw(Position A, Position B){
+    float x = A.X ;
+    float y = A.Y ;
+    int xf = B.X ;
+    int yf = B.Y ;
+    boolean blocked = false ;
+    ArrayList<Position> finalLine = new ArrayList<Position> ;
+    try{
+      float slope = (yf-y)/(xf-x) ;
+    }catch(ArithmeticException e){
+      int direction = (yf-y)/abs(yf-y) ; //hopefully is either 1 or -1
+      while(y < yf){
+        y++ ;
+        Position point = new Position(x,y) ;
+        finalLine.add(point) ;
+      }
+    }
+    while((x < xf)&&(y < yf)&&!blocked){
+      x++ ;
+      y += slope ;
+      int xff = round(x) ;
+      int yff = round(y) ;
+      Position point = new Position(xff,yff) ;
+      finalLine.add(point) ;
+    }
+  }
+      
+  
   public void clear(){
     for(int i = 0 ; i < eMatrix.length ; i++){
       for(int k = 0 ; k < eMatrix[i].length ; k++){
