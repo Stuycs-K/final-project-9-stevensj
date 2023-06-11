@@ -12,4 +12,8 @@ public class Position{
     X = x ;
     Y = y ;
   }
+  
+  public String toString(){
+    return "(" + X + " , " + Y + ")" ;
+  }
 }
