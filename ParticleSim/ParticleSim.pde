@@ -5,7 +5,7 @@ int mouseCountdown ;
 public int ticks = 0;
 String ElementChosen = "NONE";
 String ElementHover = "NONE" ;
-int selection = 113 ; //81
+int selection = 119 ; //81
 static int MovSol = 113 ; //81
 static int ImmovSol = 119 ; // 87
 static int Liq = 101 ; //69
@@ -36,7 +36,9 @@ void draw(){
     while(mouseInterval&& (mouseCountdown==0)){
   int mousex = mouseX/10 ;
   int mousey = mouseY/10 ;
-  setParticle(mousex, mousey,selection) ;
+  int pmousex = pmouseX/10 ;
+  int pmousey = pmouseY/10 ;
+  setParticle(pmousex, pmousey, mousex, mousey, selection) ;
   //System.out.println(env.get(mousey,mousex)) ;
   mouseCountdown += 1 ;
   }
@@ -104,6 +106,21 @@ void setParticle(int x, int y, int type){
     e = new Liquid() ;
   }
     env.set(y,x,e) ;
+    ElementChosen = e.toString() ;
+    elementsPresent.add(e) ;
+}
+void setParticle(int x, int y, int xf, int yf, int type){
+  Element e = new Element();
+  if(type == MovSol || type == 104){
+    e = new MovableSolid() ;
+  }
+  if(type == ImmovSol){
+    e = new ImmovableSolid() ;
+  }
+  if(type == Liq){
+    e = new Liquid() ;
+  }
+    env.drawLine(y,x,yf,xf,e) ;
     ElementChosen = e.toString() ;
     elementsPresent.add(e) ;
 }
