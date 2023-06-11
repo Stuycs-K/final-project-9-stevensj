@@ -55,6 +55,18 @@ public class ElementMatrix{
     }
     }
   }
+  
+  public void set(Position P, Element E){
+    int x = P.X ;
+    int y = P.Y ;
+    if(this.isValid(x,y)){
+    if(!(eMatrix[x][y] instanceof Border)){
+      eMatrix[x][y] = E ;
+      eMatrix[x][y].setPosition(y,x) ;
+    }
+    }
+  }
+  
   public boolean isEmpty(int x, int y){
     if(this.isValid(x,y)){
     return eMatrix[x][y] == null ;
@@ -196,33 +208,58 @@ public class ElementMatrix{
     float y = A.Y ;
     int xf = B.X ;
     int yf = B.Y ;
-    boolean blocked = false ;
-    ArrayList<Position> finalLine = new ArrayList<Position> ;
+    float slope = 0 ;
+    ArrayList<Position> finalLine = new ArrayList<Position>() ;
     try{
-      float slope = (yf-y)/(xf-x) ;
+      slope = (yf-y)/(xf-x) ;
     }catch(ArithmeticException e){
-      int direction = (yf-y)/abs(yf-y) ; //hopefully is either 1 or -1
+      int direction = (yf-(int)y)/abs(yf-(int)y) ; //hopefully is either 1 or -1
       while(y < yf){
-        y++ ;
-        Position point = new Position(x,y) ;
+        y+= direction ;
+        Position point = new Position((int)x,(int)y) ;
         finalLine.add(point) ;
+        println(point) ;
       }
     }
-    while((x < xf)&&(y < yf)&&!blocked){
+    while((x <= xf-1)&&(y <= yf-slope)){
       x++ ;
       y += slope ;
       int xff = round(x) ;
       int yff = round(y) ;
+      if(y % 0.5 == 0){
+        yff = (int)(y) ;
+        int yff2 = round(y) ;
+        if(round(y+slope) != yff2){
+          Position pointExtra = new Position(xff,yff2) ;
+          finalLine.add(pointExtra) ;
+          println(pointExtra + " ;; extra") ;
+        }
+      }
       Position point = new Position(xff,yff) ;
       finalLine.add(point) ;
+      println(point) ;
     }
+    return finalLine ;
   }
   
-  public void drawLine(int xi, int yi,int xf,int yf){
+  public void drawLine(int xi, int yi,int xf,int yf, Element E){
     Position start = new Position(xi, yi) ;
     Position end = new Position(xf, yf) ;
+    int lastY = 0 ;
     ArrayList<Position> linePoints = this.lineDraw(start,end) ;
-    //finish
+    for(int i = 0 ; i < linePoints.size() ; i++){
+      if((linePoints.get(i).Y - lastY > 1)&&(lastY!=0)){
+        for(int k = lastY+1 ; k < linePoints.get(i).Y ; k++){
+          this.set(linePoints.get(i).X, k,E) ;
+          //println("set ! : " + linePoints.get(i).X + " , " + linePoints.get(i).Y) ;
+        }
+      }else
+      {
+      this.set(linePoints.get(i),E) ;
+      //println("set ! : " + linePoints.get(i).X + " , " + linePoints.get(i).Y) ;
+      }
+      lastY = linePoints.get(i).Y ;
+    }
   }
       
   
