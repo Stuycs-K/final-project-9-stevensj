@@ -6,7 +6,7 @@ public class FireFloat extends Gas{
     this.setHeatCapacity(10) ;
   }
   public void move(ElementMatrix env, int x, int y){
-    if(this.age > 100){
+    if(this.age > random(50,100)){
       Smoke e = new Smoke() ;
       e.setTemp(this.getTemp()) ;
       env.change(y,x,e) ;
