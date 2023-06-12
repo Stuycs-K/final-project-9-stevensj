@@ -15,6 +15,8 @@ static int Gas = 82 ;//debug, R
 static int SAND = 97 ;// a
 static int WATER = 115 ;// s
 static int IRON = 100 ;// d
+static int WOOD = 102 ;// f
+static int FIRE = 103 ;// g
 
 void setup(){
   size(500,500) ;
@@ -58,6 +60,12 @@ void draw(){
       }catch(NullPointerException e){
       }
   }
+  if(key == 101){
+    try{
+        env.die(mousey,mousex) ;
+      }catch(NullPointerException e){
+      }
+  }
   
   
   else
@@ -89,28 +97,12 @@ void drawPixels(){
 }
 
 //movement() loops through the array and attempts to call move() on each element present, executing the movement and heat conduction of the simulation.
-/*void movement(){
-  for(int y = height-9 ; y >= 0  ; y-=10){
-    for(int x = 0 ; x < width-9 ; x+=10){
-      try{
-        env.get(y/10,x/10).move(env,x/10,y/10) ;
-      }catch(NullPointerException e){
-        
-      }
-    }
-      }
-    }*/
-    
-    
-
 void movement(){
   
   for(int i = 0 ; i < elementsPresent.size() ; i++){
     Element e = elementsPresent.get(i) ;
     e.move(env, e.X, e.Y) ;
-      //println("moved" + ticks + " " +e.eX() +" " + e.eY() + " " + env.get(e.eX(), e.eY())) ;
     }
-    
   }
     
 //sets specified position in the ElementMatrix to the element corresponding to the key last pressed.
@@ -136,6 +128,12 @@ void setParticle(int x, int y, int type){
   }
   if(type == IRON){
     e = new Iron() ;
+  }
+  if(type == WOOD){
+    e = new Wood() ;
+  }
+  if(type == FIRE){
+    e = new Fire(1) ;
   }
     if(!(e.toStringProper().equals("EMPTY"))){
       env.set(y,x,e) ;
