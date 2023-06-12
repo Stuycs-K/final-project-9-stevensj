@@ -1,6 +1,7 @@
 public class Fire extends Element{
   public boolean fromSolid ;
   private boolean infinite = false;
+  private int spreadCountdown = 0 ;
   public Fire(boolean wasSolid){
     super(color(255, 144, 59),"FIRE") ;
     this.setTemp(1200) ;
@@ -28,7 +29,11 @@ public class Fire extends Element{
       }
     }else{
     if(ticks % 10 == 0){
-      this.setFire(env,x,y) ;
+      if(spreadCountdown > 5){
+        this.setFire(env,x,y) ;
+      }else{
+        spreadCountdown++ ;
+      }
       this.spawnFire(env,x,y) ;
       this.extinguish(env,x,y) ;
     }
