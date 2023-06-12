@@ -25,6 +25,7 @@ public class ElementMatrix{
   public void set(int x, int y, Element E){
     if(this.isValid(x,y)){
     if(this.isEmpty(x,y)){
+      E.setPosition(y,x) ;
       eMatrix[x][y] = E ;
     }
     }
@@ -32,7 +33,10 @@ public class ElementMatrix{
   //version of set that does not check for emptiness, used for phase changes
   public void change(int x, int y, Element E){
     if(this.isValid(x,y)){
+      elementsPresent.remove(eMatrix[x][y]) ;
+      E.setPosition(y,x) ;
       eMatrix[x][y] = E ;
+      elementsPresent.add(E) ;
     }
   }
   public boolean isEmpty(int x, int y){
@@ -44,9 +48,29 @@ public class ElementMatrix{
   //swaps two specified elements, the main method used in move()
   public void swap(int x1, int y1, int x2, int y2){
     if(this.isValid(x2,y2)){
-    Element temp = eMatrix[x1][y1] ;
-    eMatrix[x1][y1] = eMatrix[x2][y2] ;
-    eMatrix[x2][y2] = temp ;
+      if(this.isEmpty(x2,y2)){
+        println("empty swap " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
+        try{
+        eMatrix[x1][y1].setPosition(y2,x2) ;
+        }catch(NullPointerException E){
+          println("empty didn't setPos " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
+        }
+        eMatrix[x2][y2] = eMatrix[x1][y1] ;
+        eMatrix[x1][y1] = null ;
+      }
+      else
+      {
+        println("full swap " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
+        Element temp = eMatrix[x1][y1] ;
+        eMatrix[x1][y1] = eMatrix[x2][y2] ;
+        eMatrix[x1][y1].setPosition(y1,x1) ;
+        eMatrix[x2][y2] = temp ;
+        try{
+        eMatrix[x2][y2].setPosition(y2,x2) ;
+        }catch(NullPointerException E){
+          println("full didn't setPos " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
+        }
+      }
     }
   }
   
