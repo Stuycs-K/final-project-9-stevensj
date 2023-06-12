@@ -5,7 +5,8 @@ public class Element{
   private color elementColor;
   private String name ;
   private float heatCapacity ;
-  private int age ;
+  public int age ;
+  public boolean flammable = false;
   public int X ;
   public int Y ;
   
@@ -40,6 +41,7 @@ public class Element{
   public float getTemp(){
     return temp ;
   }
+ 
   
   //increases element age and attempts to conduct heat to neighbors.
   public void move(ElementMatrix env, int x, int y){
@@ -60,10 +62,11 @@ public class Element{
     }
     try{
       env.get(y,x).conduct(env.get(y-1,x)) ;
+      
     }catch(NullPointerException e){
     }
     try{
-      env.get(y,x).conduct(env.get(y+1,x+1)) ;
+      env.get(y,x).conduct(env.get(y+1,x)) ;
     }catch(NullPointerException e){
     }
     
@@ -80,6 +83,10 @@ public class Element{
   //roughly mimics heat transfer, with some substances requiring more energy to be raised by 1 degree.
   //activates every fifth tick to slow down simulation to reasonable level
   public void conduct(Element other){
+    
+    if(other instanceof Fire || other instanceof FireFloat){
+      temp+= heatCapacity ;
+    }else
     if(ticks % 5 == 0){
     if(temp < other.temp){
       temp+= heatCapacity/other.heatCapacity ;
