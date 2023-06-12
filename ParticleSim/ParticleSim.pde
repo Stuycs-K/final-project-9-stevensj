@@ -137,9 +137,9 @@ void setParticle(int x, int y, int type){
   }
     if(!(e.toStringProper().equals("EMPTY"))){
       env.set(y,x,e) ;
-      elementsPresent.add(e) ;
+      ElementChosen = e.toString() ;
     }
-    ElementChosen = e.toString() ;
+    
 }
 
 void mousePressed(){
