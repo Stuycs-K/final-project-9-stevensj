@@ -6,6 +6,8 @@ public class Element{
   private String name ;
   private float heatCapacity ;
   private int age ;
+  public int X ;
+  public int Y ;
   
   public Element(){
     temp = 20 ;
@@ -87,6 +89,14 @@ public class Element{
   }
   public void setHeatCapacity(float amt){
     heatCapacity = amt ;
+  }
+  
+  public void setPosition(int x, int y){
+    try{
+      X = x ;
+    Y = y ;
+    }catch(NullPointerException E){
+    }
   }
   
   public String toString(){
