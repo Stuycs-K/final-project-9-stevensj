@@ -1,7 +1,7 @@
 public class FireFloat extends Gas{
   
   public FireFloat(){
-    super(color(255, 144, 59),"FIREFLOAT") ;
+    super(color(255, 144, 59),"FIRE") ;
     this.setTemp(1200) ;
     this.setHeatCapacity(10) ;
   }
