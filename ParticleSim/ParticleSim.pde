@@ -17,6 +17,7 @@ static int WATER = 115 ;// s
 static int IRON = 100 ;// d
 static int WOOD = 102 ;// f
 static int FIRE = 103 ;// g
+static int FIREINFINITE = 104 ;// h
 
 void setup(){
   size(500,500) ;
@@ -132,8 +133,11 @@ void setParticle(int x, int y, int type){
   if(type == WOOD){
     e = new Wood() ;
   }
-  if(type == FIRE){
+  if(type == FIREINFINITE){
     e = new Fire(1) ;
+  }
+  if(type == FIRE){
+    e = new FireFloat() ;
   }
     if(!(e.toStringProper().equals("EMPTY"))){
       env.set(y,x,e) ;
