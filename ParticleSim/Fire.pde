@@ -40,16 +40,12 @@ public class Fire extends Element{
   public void spawnFire(ElementMatrix env, int x, int y){
         FireFloat e1 = new FireFloat() ;
         env.set(y,x+1,e1) ;
-        elementsPresent.add(e1) ;
         FireFloat e2 = new FireFloat() ;
         env.set(y,x-1,e2) ;
-        elementsPresent.add(e2) ;
         FireFloat e3 = new FireFloat() ;
         env.set(y-1,x,e3) ;
-        elementsPresent.add(e3) ;
         FireFloat e4 = new FireFloat() ;
         env.set(y+1,x,e4) ;
-        elementsPresent.add(e4) ;
   }
   public void setFire(ElementMatrix env, int x, int y){
     try{
