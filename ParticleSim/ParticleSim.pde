@@ -19,6 +19,7 @@ static int WOOD = 102 ;// f
 static int FIRE = 103 ;// g
 static int FIREINFINITE = 104 ;// h
 static int ACID = 122 ;// z
+static int VIRUS = 120 ;// x
 
 void setup(){
   size(700,700) ;
@@ -142,6 +143,9 @@ void setParticle(int x, int y, int type){
   }
   if(type == ACID){
     e = new Acid() ;
+  }
+  if(type == VIRUS){
+    e = new Virus() ;
   }
     if(!(e.toStringProper().equals("EMPTY"))){
       env.set(y,x,e) ;
