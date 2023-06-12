@@ -18,9 +18,10 @@ static int IRON = 100 ;// d
 static int WOOD = 102 ;// f
 static int FIRE = 103 ;// g
 static int FIREINFINITE = 104 ;// h
+static int ACID = 122 ;// z
 
 void setup(){
-  size(500,500) ;
+  size(700,700) ;
   background(0) ;
   env = new ElementMatrix() ;
 }
@@ -138,6 +139,9 @@ void setParticle(int x, int y, int type){
   }
   if(type == FIRE){
     e = new FireFloat() ;
+  }
+  if(type == ACID){
+    e = new Acid() ;
   }
     if(!(e.toStringProper().equals("EMPTY"))){
       env.set(y,x,e) ;
