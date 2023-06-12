@@ -27,6 +27,7 @@ public class ElementMatrix{
     if(this.isEmpty(x,y)){
       E.setPosition(y,x) ;
       eMatrix[x][y] = E ;
+      elementsPresent.add(E) ;
     }
     }
   }
@@ -82,6 +83,7 @@ public class ElementMatrix{
       for(int k = 0 ; k < eMatrix[i].length ; k++){
         if(!(eMatrix[i][k] instanceof Border) || this.isEmpty(i,k)){
           eMatrix[i][k] = null ;
+          elementsPresent.remove(eMatrix[i][k]) ;
         }
       }
     }
