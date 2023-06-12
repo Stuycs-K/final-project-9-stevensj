@@ -39,6 +39,13 @@ public class ElementMatrix{
       elementsPresent.add(E) ;
     }
   }
+  
+  public void die(int x, int y){
+    if(this.isValid(x,y)){
+      elementsPresent.remove(eMatrix[x][y]) ;
+      eMatrix[x][y] = null ;
+    }
+  }
   public boolean isEmpty(int x, int y){
     if(this.isValid(x,y)){
     return eMatrix[x][y] == null ;
@@ -49,18 +56,15 @@ public class ElementMatrix{
   public void swap(int x1, int y1, int x2, int y2){
     if(this.isValid(x2,y2)){
       if(this.isEmpty(x2,y2)){
-        println("empty swap " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
         try{
         eMatrix[x1][y1].setPosition(y2,x2) ;
         }catch(NullPointerException E){
-          println("empty didn't setPos " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
         }
         eMatrix[x2][y2] = eMatrix[x1][y1] ;
         eMatrix[x1][y1] = null ;
       }
       else
       {
-        println("full swap " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
         Element temp = eMatrix[x1][y1] ;
         eMatrix[x1][y1] = eMatrix[x2][y2] ;
         eMatrix[x1][y1].setPosition(y1,x1) ;
@@ -68,7 +72,6 @@ public class ElementMatrix{
         try{
         eMatrix[x2][y2].setPosition(y2,x2) ;
         }catch(NullPointerException E){
-          println("full didn't setPos " + y2 + " , " + x2 + " " + y1 + " , " + x1) ;
         }
       }
     }
