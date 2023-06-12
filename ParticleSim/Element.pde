@@ -47,10 +47,10 @@ public class Element{
   public void move(ElementMatrix env, int x, int y){
     age++ ;
     if(temp > 20){
-      temp -= 0.25 ;
+      temp -= 0.05 ;
     }
     if(temp < 20){
-      temp += 0.25 ;
+      temp += 0.05 ;
     }
     try{
       env.get(y,x).conduct(env.get(y,x+1)) ;
